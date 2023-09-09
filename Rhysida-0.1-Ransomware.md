@@ -2,7 +2,7 @@
 title: "Rhysida 0.1 Ransomware"
 date: 2023-09-07T00:00:00+05:45
 # post image
-image: "![image](https://github.com/CryptoGenNepal/blog/assets/142308575/25225778-14cb-48b6-b87e-0aa4d94fb825)"
+image: "https://github.com/CryptoGenNepal/blog/assets/142308575/25225778-14cb-48b6-b87e-0aa4d94fb825"
 # author
 author: "Venus Chhantel"
 # post type (regular/featured)
@@ -25,7 +25,7 @@ SHA256: a864282fea5a536510ae86c77ce46f7827687783628e4f2ceb5bf2c41b8cd3c6
 
 AV Detection: 54/71 detected ([VirusTotal](https://www.virustotal.com/gui/file/a864282fea5a536510ae86c77ce46f7827687783628e4f2ceb5bf2c41b8cd3c6/details))
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/d62d8a74-6ccd-4f84-915e-611629550991)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/d62d8a74-6ccd-4f84-915e-611629550991" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 
 ### Analysis:
@@ -33,7 +33,7 @@ AV Detection: 54/71 detected ([VirusTotal](https://www.virustotal.com/gui/file/a
 
 The analysis of the sample was started with the static analysis by examining the file headers and metadata. Using PeStudio tool, the compile-stamp was checked which indicate that the sample was developed on May 15 (Mon) 2023 at 16:29:10. This could be the actual timestamp of this sample considering its first attack was reported on May 17.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/836b535f-b82c-46b4-881d-d0f93f0d8d32)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/836b535f-b82c-46b4-881d-d0f93f0d8d32" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 After this, the strings of this sample were extracted using FLOSS tool and saved to a text file as:
 
@@ -41,18 +41,18 @@ After this, the strings of this sample were extracted using FLOSS tool and saved
 
 Some of the interesting strings found in this sample are:
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/3662001b-476f-4b1f-9f78-ae8cea9a5823)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/3662001b-476f-4b1f-9f78-ae8cea9a5823" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 In the above figure:
 
 -   The ransom note was found.
 -   The strings related to PDF header and objects were also found. Also, the string ‘CriticalBreachDetected.pdf’ and the heading of the ransomware note ‘Critical Breach Detected’ matches. So, this sample could be using the ‘CriticalBreachDetected.pdf’ file as ransom note.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/2615cd56-4fc5-4976-8848-c8345406cb78)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/2615cd56-4fc5-4976-8848-c8345406cb78" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 Also, the strings related to PDF trailer were found containing the metadata of its creation at 2023 May 15 at 16:28:56, which is around a minute before creating this executable sample. This further back up the creation date of the sample.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/bb107ec6-5e05-4793-ad42-c0035133d104)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/bb107ec6-5e05-4793-ad42-c0035133d104" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 In the above figure:
 
@@ -66,57 +66,57 @@ Since this ransomware is still at its infancy, a lot of information were easily 
 
 For the dynamic analysis, the sample was debugged using x64dbg tool. The program calls the GetSystemInfo API and then checks the number of processors of the victim machine, value in stack frame [rbp+80] after the call.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/8c6fd881-89cf-40cf-887c-89e466d16a4c)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/8c6fd881-89cf-40cf-887c-89e466d16a4c" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 After that there is call to printf which prints the output to its console.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/b41179f2-79cb-4149-92b9-b760ae7437a0)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/b41179f2-79cb-4149-92b9-b760ae7437a0" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 The malware then constructs the string ‘Program:’ on stack with ‘stackstrings’ technique and then checks the path to its executable file.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/74bcf83a-1a09-4310-974a-a8b925afa05f)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/74bcf83a-1a09-4310-974a-a8b925afa05f" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 After that it call printf and prints the path of the malware in its console.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/e101e4d1-a778-45e1-9788-4943defe1918)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/e101e4d1-a778-45e1-9788-4943defe1918" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 The sample then enumerate directories from A: to Z:. If it found any directory during that enumeration, it will enumerate the sub-directories as well.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/e4bd7734-adc0-478b-98ad-2bc3bd40b988)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/e4bd7734-adc0-478b-98ad-2bc3bd40b988" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 It enumerates and list sub-directories using FindNextFile API.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/a91ae345-a078-408b-b353-81fea5b04686)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/a91ae345-a078-408b-b353-81fea5b04686" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 For the directories and sub-directories found, the files inside them are encrypted with ChaCha20 algorithm, which references were found as shown below.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/f9442e46-d068-464d-a0f4-63b8cfb83cfc)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/f9442e46-d068-464d-a0f4-63b8cfb83cfc" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 The encrypted files are in .rhysida extension. And the ransom note dropped is a pdf file called ‘CriticalBreachDetected.pdf’, which was also discovered during static analysis.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/4590ff0f-00dc-47ab-96e5-90c40a9f696e)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/4590ff0f-00dc-47ab-96e5-90c40a9f696e" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 Also, this sample contains excluded directories and extensions. They were found when checking labels with Ghidra as shown in two figures below.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/ee874991-30c9-43aa-8968-4e52e3e81172)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/ee874991-30c9-43aa-8968-4e52e3e81172" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 The extensions that this sample excludes are .bat, .bin, .cab, .cmd, .com, .cur, .diagcab, .diagcfg, .diagpkg, .drv, .dll, .exe, .hlp, .hta, .ico, .lnk, .msi, .ocx, .ps1, .psm1, .scr, .sys, .ini thumbs, .db, .url, .iso and .cab.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/433aa32b-852c-436a-b1d9-62992cb3d99d)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/433aa32b-852c-436a-b1d9-62992cb3d99d" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 The directories that this sample excludes are Recycle Bin, Boot, Documents and Settings, PerfLogs, Program Files, Program Files (x86), ProgramData, Recovery, System Volume Information and Windows.
 
 After completing enumerating (up to Z:) and encrypting files of found directories, the sample then executes different commands.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/9a11d8b1-4a22-449b-987d-630c2ca351e7)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/9a11d8b1-4a22-449b-987d-630c2ca351e7" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 For the execution of the command, the sample calls CreateProcess API. The commands executed were the same that were found during the string analysis.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/3e3e14f7-c8e7-4f7e-b322-eed66765a439)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/3e3e14f7-c8e7-4f7e-b322-eed66765a439" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 This can be verified from Process Monitor capture as well.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/20fec252-b3a3-4baa-ab70-c94aa61d4a5f)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/20fec252-b3a3-4baa-ab70-c94aa61d4a5f" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 Let's breakdown the commands executed by the sample. The first two commands that are executed are:
 
@@ -125,7 +125,7 @@ Let's breakdown the commands executed by the sample. The first two commands that
 
 Here, there is typo error with ‘Control’ written as ‘Conttol’. So, these two commands will execute but will fail to delete the targeted registry.
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/89a78e71-33a2-446a-95f8-495b84803945)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/89a78e71-33a2-446a-95f8-495b84803945" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 After that, the commands it tries to execute the following commands:
 
@@ -152,7 +152,7 @@ At last, the sample executes the following command:
 
 ## MITRE ATT&CK TTP:
 
-![image](https://github.com/CryptoGenNepal/blog/assets/142308575/c4ce68f4-9bcf-4139-8f03-f506e3feeca5)
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/c4ce68f4-9bcf-4139-8f03-f506e3feeca5" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 
 ## Detection with YARA:
