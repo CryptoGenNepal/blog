@@ -27,8 +27,8 @@ This year, in July, a new “MalDoc in PDF” attack which could evade detection
 
 ![image](https://github.com/CryptoGenNepal/blog/assets/142308575/4a68ee39-057c-4933-b148-9f0b89b5d6e4)
 
-## Analysis:
-### Static Analysis:
+## Analysis
+### Static Analysis
 The sample collected was a PDF file, which are normally initial stager. Let's start with static analysis of this sample by loading this file in VSCode. Initially, its contents looked legitimate with PDF header and objects as shown below.
 
 ![image](https://github.com/CryptoGenNepal/blog/assets/142308575/581f1b0c-050b-4a75-acc3-890b794dfd4a)
