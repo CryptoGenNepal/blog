@@ -21,11 +21,11 @@ This blog will be covering code level analysis of Black Basta 1.0 ransomware to 
 
 Why analysis of Black Basta 1.0, when it’s updated Black Basta 2.0 is available? It’s because it will help to better understand Black Basta 2.0 later regarding the update trend of this ransomware.
 
-## Introduction:
+## Introduction
 Black Basta is a ransomware group that emerged in early 2022, targeting various organizations across multiple industries. It is believed to be a Russian group that evolved from the defunct Conti threat actor group. It operates as a ransomware-as-a-service (RaaS), offering its malware to other cybercriminals for a share of the profits. Black Basta 1.0 is the early ransomware of this group. Later the ransomware was made sophisticated leading to Black Basta 2.0 ransomware.
 
 ## Case Study: Black Basta 1.0
-### Identification:
+### Identification
 Source: ([Malware Bazaar](https://bazaar.abuse.ch/sample/5d2204f3a20e163120f52a2e3595db19890050b2faa96c6cba6b094b0a52b0aa/))
 
 SHA256: 5d2204f3a20e163120f52a2e3595db19890050b2faa96c6cba6b094b0a52b0aa
@@ -34,7 +34,7 @@ AV Detection: 60/70 detected ([VirusTotal](https://www.virustotal.com/gui/file/5
 
 {{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/82616e87-b7a3-4bdc-80f8-4e356d4394f4" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
-### Analysis:
+### Analysis
 The sample collected from Malware Bazaar was loaded in the x64dbg for code level analysis through debugging.
 
 {{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/a17f6327-acdd-4f87-ac00-467061c1e9e0" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
@@ -198,6 +198,7 @@ Files are encrypted with .basta extension and the previously dropped fkdjsadasd.
 {{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/c97b1849-aae0-4739-8013-bdd5b1a082e9" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 ## Detection with YARA:
+```YARA
 
     rule Black_Basta_Ransomware{  
     meta:  
@@ -234,6 +235,8 @@ Files are encrypted with .basta extension and the previously dropped fkdjsadasd.
 		    any of ($file*)  
 	    )  
     }
+
+```
 
 More samples of Black Basta 1.0 were collected from Malware Bazaar in order to verify the YARA rule. The above YARA rule was able to detect them.
 
