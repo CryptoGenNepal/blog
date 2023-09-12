@@ -2,7 +2,7 @@
 title: "Maximizing SIEM Efficiency: A Guide to Prioritizing Log Sources for Effective SOC Implementation"
 date: 2023-09-12T00:00:00+05:45
 # post image
-image: "![image](https://github.com/CryptoGenNepal/blog/assets/142308575/cdc11f36-1f26-49a8-bc1b-1cdb1616e2c2)"
+image: "https://github.com/CryptoGenNepal/blog/assets/142308575/cdc11f36-1f26-49a8-bc1b-1cdb1616e2c2"
 # author
 author: "Shreenkhala Bhattarai"
 # post type (regular/featured)
@@ -17,7 +17,7 @@ draft: false
 
 Security information and event management (SIEM) is an essential part of a strong cybersecurity strategy. It helps organizations detect and respond to security incidents by collecting and analyzing logs from a variety of sources. To deploy SIEM effectively, it's important to prioritize log sources for maximum efficiency. This guide explores the importance of log sources in SIEM and provides best practices for prioritizing them to improve your Security Operations Center (SOC) deployment.
 
-{{< image src="![image](https://github.com/CryptoGenNepal/blog/assets/142308575/2139fd14-1b02-4ea0-9964-66d38b995886)" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
+{{< image src="https://github.com/CryptoGenNepal/blog/assets/142308575/2139fd14-1b02-4ea0-9964-66d38b995886" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 ## Understanding the Importance of Log Sources in SIEM
 
