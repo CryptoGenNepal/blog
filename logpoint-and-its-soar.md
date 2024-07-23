@@ -6,7 +6,7 @@ image: "images/blog/logpoint-and-its-soar/Topic.png"
 # author
 author: "Bishesh Shrestha"
 # post type (regular/featured)
-type: "featured"
+type: "regular"
 # meta description
 description: "SOAR stands for Security Orchestration, Automation, and Response. To put it in simple terms, it is like a superhero team of IT experts who work together to protect the organization from cyber threats. In simple terms, SOAR is a set of instructions and tools that help security teams work more efficiently. So why SOAR? A simple answer to this question can be that it can automate processes and alerts when suspicious activity is detected. It can also automate other tasks such as the isolation or remediation of compromised devices."
 # post draft
@@ -46,9 +46,10 @@ Imagine this, you have a Windows machine that is constantly generating logs and 
 After installation, our LP agent in our windows machine is up and running.
 
 ## Use case and trigger
-There can be a lot of use cases for SOAR, some of which could be like  **blocking an account from Active Directory**  if it is being attacked with brute force technique or it could also be something related to  **File Integrity Monitoring (FIM)**  in which if there is a certain file drop in the system our SOAR could instantly respond to it before any Security analyst even discovers it. This will help analysts to be more efficient and the SIEM solution to be more effective.
 
-For this example, my use case will be event id  **4625** which is a password failure or bad password. I am keeping it simple since it will be easy to understand and can be triggered easily.
+There can be a lot of use cases for SOAR, some of which could be like **blocking an account from Active Directory** if it is being attacked with brute force technique or it could also be something related to **File Integrity Monitoring (FIM)** in which if there is a certain file drop in the system our SOAR could instantly respond to it before any Security analyst even discovers it. This will help analysts to be more efficient and the SIEM solution to be more effective.
+
+For this example, my use case will be event id **4625** which is a password failure or bad password. I am keeping it simple since it will be easy to understand and can be triggered easily.
 
 > _Note: You can use according to your own necessities_
 
@@ -67,18 +68,20 @@ For every password failure coming from the windows machine, this alert will be t
 In the alert incident data, we will get the AlertRule ID. This will be handy afterwards when automating the investigation.
 
 ## Playbooks
+
 Playbooks in LogPoint are automated scripts that execute a series of tasks and actions to address specific security incidents or scenarios. They help organizations to standardize their security operations and improve the efficiency and speed of response to security incidents. Playbooks can be triggered manually or automatically based on specific events or conditions and can include actions such as data collection, correlation, analysis, and remediation. They can be customized to meet the specific needs and requirements of an organization and can integrate with other security tools and systems to provide a comprehensive and unified approach to security operations. Here for my use case, I have created a playbook named ‘**Password Failure**’ which will create a case and run sub-playbooks:
 
 {{< image src="images/blog/logpoint-and-its-soar/6.png" caption="Playbook" alt="Playbook" height="" width="" position="center" command="fit" option="" class="img-fluid" title="Playbook" >}}
 
-The next step here will be triggering this playbook automatically from a generated alert. So for triggering the playbooks automatically LogPoint SOAR provides something called  **Playbook Trigger (Automation).**
+The next step here will be triggering this playbook automatically from a generated alert. So for triggering the playbooks automatically LogPoint SOAR provides something called **Playbook Trigger (Automation).**
 
 ## Playbook Trigger (Automation)
-For creating an automated playbook trigger we first need to go to the trigger tab and click on  **+Create Trigger.**
+
+For creating an automated playbook trigger we first need to go to the trigger tab and click on **+Create Trigger.**
 
 {{< image src="images/blog/logpoint-and-its-soar/7.png" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
-Then in the General tab name the playbook trigger and put the source as  **LogPoint.** After that give a description according to your use case and set the severity label and click on enable.
+Then in the General tab name the playbook trigger and put the source as **LogPoint.** After that give a description according to your use case and set the severity label and click on enable.
 
 {{< image src="images/blog/logpoint-and-its-soar/8.png" caption="General Tab in Playbook Trigger" alt="General Tab in Playbook Trigger" height="" width="" position="center" command="fit" option="" class="img-fluid" title="General Tab in Playbook Trigger" >}}
 
@@ -103,4 +106,5 @@ All in all, Our goal for automated case creation is completed.
 {{< image src="images/blog/logpoint-and-its-soar/12.png" caption="Case Creation" alt="Case Creation" height="" width="" position="center" command="fit" option="" class="img-fluid" title="Case Creation" >}}
 
 ## Conclusion
+
 In conclusion, we’ve just scratched the surface of the capabilities of LogPoint SOAR’s detection and investigation features. It’s a powerful tool that streamlines the process of detecting potential security threats and conducting thorough investigations. But the real magic happens when we move on to the next chapter and explore the world of automated response. With the ability to quickly and efficiently respond to incidents, LogPoint SOAR takes the security game to a whole new level. So, keep your eyes peeled for our next blog, where we’ll dive even deeper into the wonders of this cutting-edge technology.

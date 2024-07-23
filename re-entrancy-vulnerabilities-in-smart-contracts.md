@@ -3,7 +3,7 @@ title: "Re-entrancy Vulnerabilities in Smart Contracts"
 date: 2022-10-05T00:00:00+05:45
 image: "images/blog/default.png"
 author: "Aayushman Thapa Magar"
-# type: "featured"
+type: "regular"
 description: "This is meta description"
 draft: false
 ---
@@ -30,6 +30,7 @@ The primary purpose for these articles is **not** to educate others, but to test
 5.  References
 
 ### Re-entrancy Overview
+
 In computer science, re-entrancy refers to multiple invocation of a procedure, where it can be interrupted and called again without completing its previous execution. This issue is especially prevalent in single threaded systems, such as the EVM. Re-entrancy vulnerabilities occur when a function makes an external call to untrusted contracts which can recursively call the original function and hijack the control flow.
 
 This often happens when funds are transferred and the fallback/receive functions on the receiving contract call the original transfer function.
@@ -37,16 +38,17 @@ This often happens when funds are transferred and the fallback/receive functions
 {{< image src="/images/blog/smart-contract/contract.webp" caption="" alt="" height="" width="" position="center" command="fit" option="" class="img-fluid" title="" >}}
 
 ### Security Risk
+
 If the accounting mechanism executes **after** the transfer mechanism, re-entrancy can be used to siphon funds out of the vulnerable contract. This iterative calling of functions can last as long as there is remaining gas.
 
 Such was the case with the infamous DAO hack which led to $60M worth of ether to be stolen. As a response, the Ethereum blockchain, was forked into Ethereum and Ethereum Classic. Below are some notable re-entrancy hacks.
 
-*   Uniswap/Lendf.Me lost $25M (April 2020)
-*   The BurgerSwap lost $7.2M (May 2021)
-*   The SURGEBNB lost $4M (August 2021)
-*   CREAM FINANCE lost $18.8M (August 2021)
-*   Siren protocol lost $3.5M (September 2021)
-*   Fei Protocol lost $80M (April 2022)
+- Uniswap/Lendf.Me lost $25M (April 2020)
+- The BurgerSwap lost $7.2M (May 2021)
+- The SURGEBNB lost $4M (August 2021)
+- CREAM FINANCE lost $18.8M (August 2021)
+- Siren protocol lost $3.5M (September 2021)
+- Fei Protocol lost $80M (April 2022)
 
 #### Example
 
@@ -67,6 +69,7 @@ Here, the attacker is depositing some amount of ether pass the check at line 12 
 The accounting mechanism at line 15 in the victim contract will never get a chance to execute and reset the balance of the attacker as the two functions are called recursively until all the funds are exhausted.
 
 ## Identification techniques
+
 There is always risk associated with performing external calls. To identify whether a contract is vulnerable to re-entrancy attacks, the following must be considered.
 
 1.  Call to external untrusted contracts is made.
@@ -75,6 +78,7 @@ There is always risk associated with performing external calls. To identify whet
 Although these are not always indicative of whether re-entrancy is present, it can be a good indicator. In our case, the answer was **yes** to both, hence we had the vulnerability.
 
 ## Mitigation measures
+
 The simplest way to prevent re-entrancy vulnerabilities would be to complete all the internal accounting mechanisms before interacting with external functions. This is also known as the _check-effects-interactions_ pattern, where each statement is categorized as either a check, an effect (state change) or an interaction and arranged **strictly** accordingly.
 
 In our example, it would look something like this;

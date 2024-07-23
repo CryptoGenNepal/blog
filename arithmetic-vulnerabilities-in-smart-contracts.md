@@ -3,12 +3,13 @@ title: "Arithmetic Vulnerabilities in Smart Contracts"
 date: 2022-11-04T00:00:00+05:45
 image: "images/blog/default.png"
 author: "Aayushman Thapa Magar"
-# type: "featured"
+type: "regular"
 description: "This is meta description"
 draft: false
 ---
 
 ## Forword
+
 This is fourth in a series of articles on vulnerabilities that smart contracts are susceptible to. You can find the rest of the articles on the following links:
 
 1. [Transaction Order Dependence](/blog/transaction-order-dependence-vulnerabilities-on-smart-contracts/)
@@ -18,14 +19,15 @@ This is fourth in a series of articles on vulnerabilities that smart contracts a
 
 The previous article was hefty, so for this week, I wanted to keep things light. As always, the purpose of these articles is **not** to educate others, but to test the depth of my own understanding. If I can explain it properly, means I understand it properly. Hope my efforts are even a little useful to someone else and aid them in this journey with me.
 
-
 ## Contents
+
 1.  Overflows and Underflows Overview
 2.  Security Risk
 3.  Mitigation measures
 4.  References
 
 ## Overflows and Underflows Overview
+
 Overflows and Underflows are a classic vulnerability in “normal” infosec world. Such flaws have been abused through the history leading to severe consequences — millions of devices being infected by spyware. In fact, Common Weakness Enumeration (CWE) placed overflows and underflows as 12th most common flaw in 2021.
 
 That’s cool and all, but what _is_ overflow and underflow (CWE-190 and CWE-191 respectively)? Allow me to answer that question with a story about a young lad named Bob and his magic car.
@@ -55,21 +57,21 @@ Arithmetic flaws often arise when byte strings exceed their allocated space (byt
 Exactly how much space is allocated is dependent on the data type used. In the case of solidity;
 
 ```javascript
-uint8 ranges from 0 to 2⁸ - 1,  
+uint8 ranges from 0 to 2⁸ - 1,
 uint16 ranges from 0 to 2¹⁶ - 1
 ...
 uint256 ranges from 0 to 2²⁵⁶ - 1.
 ```
 
-
 Alternately, we can use the following to get the min and max value of an integer type (x).
 
 ```javascript
-type(x).min
-type(x).max
+type(x).min;
+type(x).max;
 ```
 
-## Security Risk 
+## Security Risk
+
 Solidity compiler before versions 0.8.0 does not check for overflows and underflows. This means that if the byte size is reached for a given integer type, it will assume the first viable value. This can cause minor issues from disrupting the execution of the smart contract to serious issues that could lead to gaining an absurd amount of ERC-20 tokens.
 
 ### Proof of concept
@@ -97,7 +99,6 @@ Now, we have access to the deployed contract’s ABI. We can access the public v
 
 {{< image src="/images/blog/smart-contract/airth.webp" caption="Public variable getter functions" alt="Public variable getter functions" height="" width="" position="center" command="fit" option="" class="img-fluid" title="Public variable getter functions" >}}
 
-
 Lets call the \_overflow() and \_underflow() functions and check if our smart contract is vulnerable.
 
 {{< image src="/images/blog/smart-contract/airthOverflow.webp" caption="Calling the functions" alt="Calling the functions" height="" width="" position="center" command="fit" option="" class="img-fluid" title="Calling the functions" >}}
@@ -111,6 +112,7 @@ Here, we can see that the value of overflow (255) has been changed to 0, instead
 The value for underflow (0) has been changed to 255 instead of -1 because, unit cannot go below 0 and instead, it defaults to the maximum value for uint8.
 
 ## Mitigation measures
+
 The easiest and the quickest fix would be to simply use solidity compiler versions newer or equal than 0.8.0. In these versions, the contract will throw an error if such vulnerabilities occur.
 
 {{< image src="/images/blog/smart-contract/airthOverflow-2.webp" caption="Overflow and underflow occurred" alt="Overflow and underflow occurred" height="" width="" position="center" command="fit" option="" class="img-fluid" title="Overflow and underflow occurred" >}}
@@ -118,6 +120,7 @@ The easiest and the quickest fix would be to simply use solidity compiler versio
 Another method to prevent such vulnerabilities would be to use the [safemath.sol](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/utils/math/SafeMath.sol) library by OpenZeppelin.
 
 ## References
+
 1.  [https://www.comparitech.com/blog/information-security/integer-overflow-attack/](https://www.comparitech.com/blog/information-security/integer-overflow-attack/)
 2.  [https://hackernoon.com/hack-solidity-integer-overflow-and-underflow](https://hackernoon.com/hack-solidity-integer-overflow-and-underflow)
 3.  [https://solidity-by-example.org/hacks/overflow/](https://solidity-by-example.org/hacks/overflow/)

@@ -3,7 +3,7 @@ title: "Transaction Order Dependence Vulnerabilities on Smart Contracts"
 date: 2022-10-04T00:00:00+05:45
 image: "images/blog/default.png"
 author: "Aayushman Thapa Magar"
-# type: "featured"
+type: "regular"
 description: "This is meta description"
 draft: false
 ---
@@ -11,6 +11,7 @@ draft: false
 {{< toc >}}
 
 ## Foreword
+
 This work is first in the series of articles on vulnerabilities that smart contracts are susceptible to. You can find my articles in this topic in the following links:
 
 1. [Transaction Order Dependence](/blog/transaction-order-dependence-vulnerabilities-on-smart-contracts/)
