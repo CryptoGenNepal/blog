@@ -2,7 +2,7 @@
 title: "Hunting Down Remcos RAT: How CrowdStrike Update Mishaps Can Reveal Hidden Threats"
 date: 2024-07-22T12:00:00+05:45
 # post image
-image: "images/blog/default.png"
+image: "images/blog/crowdstrike-update-mishaps-reveal-hidden-threats/crowdsttike-remcos.png"
 # author
 author: "Simran Karki"
 # post type (regular/featured)
