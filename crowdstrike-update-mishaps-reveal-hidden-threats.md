@@ -160,7 +160,7 @@ Mapping with the MITRE ATT&CK framework will significantly enhance threat huntin
 
 ### MITRE Mapping
 
-{{< image src="images/blog/crowdstrike-update-mishaps-reveal-hidden-threats/remcosmitre.png" caption="RemCos" alt="RemCos" height="" width="" position="center" command="fit" option="" class="img-fluid" title="RemCos" >}}
+{{< image src="images/blog/crowdstrike-update-mishaps-reveal-hidden-threats/RemcosMitre.png" caption="RemCos" alt="RemCos" height="" width="" position="center" command="fit" option="" class="img-fluid" title="RemCos" >}}
 
 ### Behavioral Analysis
 
