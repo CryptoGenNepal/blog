@@ -2,7 +2,7 @@
 title: "Hunting Down Remcos RAT: How CrowdStrike Update Mishaps Can Reveal Hidden Threats"
 date: 2024-07-22T12:00:00+05:45
 # post image
-image: "images/blog/crowdstrike-update-mishaps-reveal-hidden-threats/cover.png"
+image: "images/blog/default.png"
 # author
 author: "Simran Karki"
 # post type (regular/featured)
@@ -15,7 +15,7 @@ draft: false
 
 {{< toc >}}
 
-# Hunting Down Remcos RAT: How CrowdStrike Update Mishaps Can Reveal Hidden Threats
+## Background
 
 Recently, the cybersecurity community faced a significant challenge worldwide due to a BSOD (Blue Screen of Death) error caused by a CrowdStrike update. As attackers attempt to exploit this situation, it is crucial for organizations to strengthen their defenses and actively hunt for potential threats. Here’s a comprehensive guide on how to conduct threat hunting for this incident.
 
@@ -36,7 +36,7 @@ To address this evolving threat landscape, the threat hunting process outlines a
 
 Threat hunting can be conducted through various methods, as I discussed in previous blogs.
 
-[Link to my previous blogs on threat hunting](https://medium.com/@simrankarki)
+[Link to my previous blogs on threat hunting](https://cryptogennepal.com/blog/threat-hunting-with-windows-event-logs/)
 
 1. IOC Based Hunting
 2. Hypothesis Based Hunting
@@ -55,20 +55,22 @@ Formulating a hypothesis is crucial in threat hunting because a well-defined hyp
 
 P.S. This is my own methodology for threat hunting. If you have any suggestions or modifications, feel free to share or modify.
 
-### Plan:
+### Plan
 
 1. Formulate your hypothesis as demonstrated above.
 2. Define the goal of your hunt. For this hunt, my goal is to determine if Remcos exists in my network. The primary objective is to validate or invalidate my hypothesis.
 3. Research the technical context, including Indicators of Compromise (IOCs), attack behaviors/patterns, and similar incidents.
 4. Build analytics for the hunt if you are using SIEM or EDR tools.
 
-**`For example: (source_address or destination_address in IOC and action=”allow” | chart count() by source_address, destination_address,action,device_name )`**
+```SQL
+For example: (source_address or destination_address in IOC and action=”allow” | chart count() by source_address, destination_address,action,device_name )
+```
 
-### **Document:**
+### **Document**
 
 Create a plan document that includes your hypothesis, hunting goals, the analytics you will use, and the technical context.
 
-### IOCs Gathering:
+### IOCs Gathering
 
 To begin, gather all information related to the attacks happening recently due to the CrowdStrike incident, such as IOCs (Indicators of Compromise) and TTPs (Tactics, Techniques, and Procedures). Some IOCs that have been identified include:
 
@@ -150,17 +152,17 @@ To begin, gather all information related to the attacks happening recently due t
 
 - 213.5.130[.]58[:]443
 
-### TTPs Information:
+### TTPs Information
 
 Research on the TTPs that aligns with your hypothesis, here I will be focusing on the Remcos since, my hypothesis is related with Remcos RAT malware.
 
 Mapping with the MITRE ATT&CK framework will significantly enhance threat hunting for malware by providing a structured approach to identifying and understanding adversary behavior. So, here is the information of Remcos RAT malware TTPS as per MITRE framework:
 
-### MITRE Mapping:
+### MITRE Mapping
 
-![Remcos_S0332 (2).png](<Hunting%20Down%20Remcos%20RAT%20How%20CrowdStrike%20Update%20Mis%2014e9c7f4dbb24435936ec6b548bd0675/Remcos_S0332_(2).png>)
+{{< image src="images/blog/crowdstrike-update-mishaps-reveal-hidden-threats/remcosmitre.png" caption="RemCos" alt="RemCos" height="" width="" position="center" command="fit" option="" class="img-fluid" title="RemCos" >}}
 
-### **Behavioral Analysis:**
+### Behavioral Analysis
 
 Next, analyze the collected information, such as IOCs and TTPs, to validate your formulated hypothesis. Use the above information and the MITRE ATT&CK framework to identify techniques associated with Remcos RAT. Here are some recommended actions:
 
@@ -172,18 +174,16 @@ Next, analyze the collected information, such as IOCs and TTPs, to validate your
 - Identify attempts to inject code into running processes, which can be used to remain hidden and access process memory.
 - Monitor for the use of proxies to route Command and Control (C2) traffic, which can hide the source and destination.
 
-## Investigate:
+## Investigate
 
 Next, conduct an in-depth investigation into the suspicious activities identified during the analysis phase. Correlate your findings across multiple data sources—such as endpoints, networks, and security devices—to verify the presence of threats.
 
-### Mitigate:
+## Mitigate
 
 Finally, to neutralize the detected threats, inform your Incident Response (IR) team so they can take appropriate action. Ensure you provide them with all relevant details from your investigation to facilitate a swift and effective response.
 
 **Note: This step is optional and should be followed only if your hypothesis is confirmed and there are threats that need to be mitigated.**
 
-# Conclusion:
+## Conclusion
 
 In conclusion, assess the success of your hunt using the metrics and KPIs defined in your planning document. Document your findings, actions taken, and lessons learned from the hunt. This will help refine your methodology for future hunts and improve overall threat detection and response strategies.
-
-{{< image src="images/blog/threat-hunting-with-windows-event-logs/Picture5.png" caption="PowerShell event log" alt="PowerShell event log" height="" width="" position="center" command="fit" option="" class="img-fluid" title="PowerShell event log" >}}
